@@ -27,6 +27,11 @@ export default class Sheet {
 
     async writePulls(pulls: Pull[]) {
 
+        const header = ["repo_name",
+            "PRNumber", "state", "title", "description", "CreatedAt", "UpdatedAt"
+            , "MergedAt"
+            , "reviewers"
+        ]
 
         const valueList = pulls.map((pull) => {
             return [
@@ -41,10 +46,10 @@ export default class Sheet {
 
         await this.#sheets.spreadsheets.values.append({
             spreadsheetId: process.env.SPREADSGEET_ID,
-            range: "A:H",
+            range: "A:Z",
             valueInputOption: "USER_ENTERED",
             requestBody: {
-                values: valueList,
+                values: [header, ...valueList],
             },
         })
     }

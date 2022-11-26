@@ -50,6 +50,8 @@ export default class Pull {
     }
 
     get reviewers(): string {
+        console.log(this.#reviewers);
+
         return this.#reviewers.join();
     }
 

@@ -30,7 +30,7 @@ export default class GithubClient {
             })
 
             const pullDomains = response.data.map((pull) => {
-                const reviewers = (pull.requested_reviewers === null || pull.requested_reviewers === undefined) ? [] : pull.requested_reviewers.map((reviewers) => reviewers.name)
+                const reviewers = (pull.requested_reviewers === null || pull.requested_reviewers === undefined) ? [] : pull.requested_reviewers.map((reviewers) => reviewers.login)
                 return new Pull(pull.number, pull.body, pull.merged_at, pull.created_at, pull.updated_at, pull.state, reviewers as string[], pull.title, this.#repo)
             })
 
